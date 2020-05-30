@@ -229,7 +229,7 @@ public final class RealConnection extends Http2Connection.Listener implements Co
    */
   private void connectTunnel(int connectTimeout, int readTimeout, int writeTimeout, Call call,
       EventListener eventListener) throws IOException {
-    Request tunnelRequest = createTunnelRequest();
+    Request tunnelRequest = createTunnelRequest(call);
     HttpUrl url = tunnelRequest.url();
     for (int i = 0; i < MAX_TUNNEL_ATTEMPTS; i++) {
       connectSocket(connectTimeout, readTimeout, call, eventListener);
@@ -438,7 +438,7 @@ public final class RealConnection extends Http2Connection.Listener implements Co
    * authenticator. This gives the authenticator the option to customize the CONNECT request. It can
    * decline to do so by returning null, in which case OkHttp will use it as-is
    */
-  private Request createTunnelRequest() throws IOException {
+  private Request createTunnelRequest(Call call) throws IOException {
     Request proxyConnectRequest = new Request.Builder()
         .url(route.address().url())
         .method("CONNECT", null)
