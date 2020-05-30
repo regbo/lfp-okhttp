@@ -45,10 +45,9 @@ import javax.annotation.Nullable;
 import javax.net.ssl.TrustManager;
 import javax.net.ssl.TrustManagerFactory;
 import javax.net.ssl.X509TrustManager;
-import okhttp3.Headers;
-import okhttp3.HttpUrl;
-import okhttp3.RequestBody;
-import okhttp3.ResponseBody;
+
+import com.android.okhttp.internal.Version;
+import okhttp3.*;
 import okhttp3.internal.http2.Header;
 import okio.Buffer;
 import okio.BufferedSource;
@@ -684,5 +683,24 @@ public final class Util {
     return a.host().equals(b.host())
         && a.port() == b.port()
         && a.scheme().equals(b.scheme());
+  }
+
+  public static String getUserAgent(Request request) {
+    if (request == null)
+      return Version.userAgent();
+    Headers headers = request.headers();
+    if (headers == null)
+      return Version.userAgent();
+    for (String name : headers.names()) {
+      if (name == null || !"user-agent".equalsIgnoreCase(name))
+        continue;
+      List<String> values = headers.values(name);
+      if (values == null || values.isEmpty())
+        continue;
+      for (String value : values)
+        if (value != null && !value.isEmpty())
+          return value;
+    }
+    return Version.userAgent();
   }
 }
