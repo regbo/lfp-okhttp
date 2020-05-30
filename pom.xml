@@ -11,7 +11,7 @@
 
   <groupId>com.squareup.okhttp3</groupId>
   <artifactId>parent</artifactId>
-  <version>3.14.10-05292020-LFP-RELEASE</version>
+  <version>${revision}</version>
   <packaging>pom</packaging>
 
   <name>OkHttp (Parent)</name>
@@ -37,6 +37,9 @@
   </modules>
 
   <properties>
+  
+	<revision>3.14.10-05292020-LFP-RELEASE</revision>
+  
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 
     <!-- Compilation -->
