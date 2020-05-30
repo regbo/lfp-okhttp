@@ -13,7 +13,7 @@ then
 fi
 echo "repositoryId:$REPO_ID"
 echo "repositoryURL:$REPO_URL"
-cmd.exe /c mvn clean package deploy \
+cmd.exe /c mvn clean source:jar jar:jar deploy \
 -DaltDeploymentRepository="$REPO_ID::default::$REPO_URL" \
 -Dmaven.test.skip=true \
 -DskipTests \
