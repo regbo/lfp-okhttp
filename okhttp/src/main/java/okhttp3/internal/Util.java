@@ -46,7 +46,6 @@ import javax.net.ssl.TrustManager;
 import javax.net.ssl.TrustManagerFactory;
 import javax.net.ssl.X509TrustManager;
 
-import com.android.okhttp.internal.Version;
 import okhttp3.*;
 import okhttp3.internal.http2.Header;
 import okio.Buffer;
@@ -687,10 +686,10 @@ public final class Util {
 
   public static String getUserAgent(Request request) {
     if (request == null)
-      return Version.userAgent();
+      return okhttp3.internal.Version.userAgent();
     Headers headers = request.headers();
     if (headers == null)
-      return Version.userAgent();
+      return okhttp3.internal.Version.userAgent();
     for (String name : headers.names()) {
       if (name == null || !"user-agent".equalsIgnoreCase(name))
         continue;
@@ -701,6 +700,6 @@ public final class Util {
         if (value != null && !value.isEmpty())
           return value;
     }
-    return Version.userAgent();
+    return okhttp3.internal.Version.userAgent();
   }
 }

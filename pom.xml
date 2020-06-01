@@ -38,7 +38,7 @@
 
   <properties>
   
-	<revision>3.14.10-06022020-LFP-RELEASE</revision>
+	<revision>3.14.10-06032020-LFP-RELEASE</revision>
   
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 
@@ -268,6 +268,32 @@
           </execution>
         </executions>
       </plugin>
+	  
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>flatten-maven-plugin</artifactId>
+				<version>1.2.1</version>
+				<configuration>
+					<updatePomFile>true</updatePomFile>
+				</configuration>
+				<executions>
+					<execution>
+						<id>flatten</id>
+						<phase>process-resources</phase>
+						<goals>
+							<goal>flatten</goal>
+						</goals>
+					</execution>
+					<execution>
+						<id>flatten.clean</id>
+						<phase>clean</phase>
+						<goals>
+							<goal>clean</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>	  
+	  
     </plugins>
   </build>
 
