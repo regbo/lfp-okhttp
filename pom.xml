@@ -38,7 +38,7 @@
 
   <properties>
   
-	<revision>3.14.10-06032020-LFP-RELEASE</revision>
+	<revision>3.14.10-06042020-LFP-RELEASE</revision>
   
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 
